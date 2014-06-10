@@ -1,20 +1,16 @@
-import numpy as np
-import scipy
-import scipy.misc
-import scipy.ndimage
-import matplotlib as mpl
 import matplotlib.pyplot as plt
-import Image
+import matplotlib.image as mpimg
+import numpy as np
 
-x = scipy.ndimage.imread('template-6.png')
-x_remap = np.memmap('template-6.png', dtype=np.int64, shape=(50, 50))
-lena = scipy.misc.lena()
+def detach_display():
+    img = mpimg.imread('lena.png')
 
-plt.imshow(lena)
+    print img
 
-print type(x)
-print x.shape, x.dtype
-print type(x_remap)
-#print type(lena)
-#print lena.mean()
-#print lena
+    #imgplot = plt.imshow(img)
+    plt.imshow(img)
+    plt.show()
+
+print 'Done'
+
+detach_display()
