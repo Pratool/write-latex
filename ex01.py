@@ -1,23 +1,26 @@
 """
 Exercise 1
 Opens scikit-image logo, crops and displays it, then transforms and saves
-the image as PNG, JPG, and TIFF.
+the image as PNG and TIFF.
 """
 
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-import numpy as np
 import matplotlib
 
-def rgb2gray(rgb):
-    r, g, b = rgb[:,:,0], rgb[:,:,1], rgb[:,:,2]
-    gray = 0.2989*r + 0.5870*g + 0.1140*b
+import skimage
+from skimage import data, filter, io, color
+from skimage.transform import rescale
 
-    return gray
+import numpy as np
+from PIL import Image
 
-logo = mpimg.imread('scikit-image.png')
+filename = 'scikit-image.png'
+logo = io.imread(filename)
 logo = logo[1:103, 1:103]
-logo = rgb2gray(logo)
+logo = color.rgb2gray(logo)
 
 imgplot = plt.imshow(logo, cmap=plt.cm.gray, interpolation='nearest')
 plt.show()
+
+io.imsave('ex01-outfile.png', logo)
+io.imsave('ex01-outfile.tiff', logo)
